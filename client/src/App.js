@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import UserView from "./UserView";
 import './App.css';
 
-
 function App() {
 
   let [request, setRequest] = useState([]);
@@ -27,20 +26,17 @@ function App() {
 
   return (
     <div>
-      <div>
+      <div className="App">
         <h1 className="Apptitle">
           GreenGrab
         </h1>
-        <h2>
-          Vegetables and Fruit for your season
+        <h2 className="container">
+          Vegetables for your season
         </h2>
         <div>
-          <UserView requestMonthCb={text => requestMonth(text)} monthVeggies = {request} />
+          <UserView requestMonthCb={text => requestMonth(text)} monthVeggies = {request}/>
         </div>
-        <h3>
-          Simplified Calendar visualization
-        </h3>
-        {/* <img className = 'background' src='https://www.pixelstalk.net/wp-content/uploads/images3/Funny-Panda-Backgrounds.jpeg' alt="panda background"/> */}
+    
       </div>
       </div>
   );
