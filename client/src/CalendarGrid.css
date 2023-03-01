@@ -55,19 +55,27 @@
 
 .veggieImage {
     width: 80%;
+    height: 80%;
     aspect-ratio: 1/1;
     background-color: rgb(255, 255, 255);
-    object-fit: cover;
+    object-fit: contain;
+    text-align: center;
     margin: auto;
-    
-}
-
-#veggiesbox{
-    width: 100%;
-    overflow: hidden;
-    box-sizing: initial;
     background-color: rgba(255, 255, 255, 0.847);
     border-radius: 5px;
     border: 2px solid rgba(68, 53, 5, 0.26);
     box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208);
+}
+
+#veggieText{
+    padding-bottom: 20px;
+}
+
+
+#veggiesbox{
+
+    width: 100%;
+    overflow: hidden;
+    box-sizing: initial;
+    
 }

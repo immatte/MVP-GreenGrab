@@ -3,6 +3,9 @@ import './App.css';
 import SearchBarForm from './SearchBarForm';
 import CalendarGrid from './CalendarGrid';
 
+/* CHILD FROM APP */
+/* PARENT FROM CALENDARGRID AND SEARCHBARFORM */
+
 function UserView(props) {
 
     return (

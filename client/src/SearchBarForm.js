@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
 import './App.css';
 
+/* CHILD FROM USERVIEW */
+
+//Work in progress : This child(SearchBarForm) is currently not being used but could be for a future feature
+
 function SearchBarForm(props) {
     let [input, setInput] = useState("");
     

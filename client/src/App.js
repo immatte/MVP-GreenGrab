@@ -2,10 +2,15 @@ import React, {useState} from "react";
 import UserView from "./UserView";
 import './App.css';
 
+/* PARENT FROM USERVIEW 
+Check calendarGrid comments for lines 11-28
+*/
+
 function App() {
 
   let [request, setRequest] = useState([]);
 
+  // requestMonth uses a specific route created for creating a new table
   const requestMonth = async month => {
     //NewRequest --> date(Month)
     //Get the veggies linked to Month
