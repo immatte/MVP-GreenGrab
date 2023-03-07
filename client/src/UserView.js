@@ -9,14 +9,19 @@ import CalendarGrid from './CalendarGrid';
 function UserView(props) {
 
     return (
-        <div className = 'background'>
-            {/* <h2>
-                <SearchBarForm/>
-            </h2> */}
+        
+        <div>
+            <div>
+                <SearchBarForm />
+            </div>
+
+            <div className = 'background'>
             <h2>
-                <CalendarGrid requestMonthCb={month => props.requestMonthCb(month)} monthVeggies = {props.monthVeggies}/>
+                <CalendarGrid requestMonthCb={text => props.requestMonthCb(text)} requestMonth2Cb={text => props.requestMonth2Cb(text)} monthFruits={props.monthFruits} monthVeggies = {props.monthVeggies}/>
+                {/* {props.monthVeggies.length &&  <VeggiesGrid monthVeggies = {props.monthVeggies}/> } */}
+                
             </h2>
-            
+            </div>
         </div>
     );
 }

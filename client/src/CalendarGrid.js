@@ -1,5 +1,9 @@
 import React from 'react';
 import './CalendarGrid.css';
+import { useState } from 'react';
+import { Routes, Route, Link } from "react-router-dom";
+import VeggiesGrid from './VeggiesGrid';
+import FruitsGrid from './FruitsGrid';
 
 /* CHILD OF USERVIEW 
 --> Lines 31-35 are creating a grid of Months(y) from the array of "yearcalendar" 
@@ -9,14 +13,29 @@ See lines 13-28 from App.
 */
 
 function CalendarGrid(props) {
+    const [ active, setActive ] = useState(false); //added for FE
+    const [ isFruits, setIsFruits ] = useState(false); //display veggies by default
 
     const handleClick = month => {
+        // props.requestMonthCb(month);
+        props.requestMonth2Cb(month);
         props.requestMonthCb(month);
+        setActive(month);
         console.log(yearcalendar[month]) //just testing
     };
+
+    const handleChangeView = (isFruits) => {
+        setIsFruits(isFruits);
+    }
     //Work in progress : This function is currently not being used but could be for a future feature as to specify which Month was clicked on
-    const handleChange = event => {
-      };
+    // const handleChange = event => {
+    //   };
+
+    //added for FE:
+    // const activeMonth = () => {
+    //     setActive(!isActive);
+    // }
+
 
     //array of the Month used in line 28
     let yearcalendar = ['January','February','March','April','May','June','July','August','September','October','November','December']
@@ -31,30 +50,26 @@ function CalendarGrid(props) {
                     {/* First Part : Calendar Grid buttons*/}
                     {
                         yearcalendar.map((y, index) => (
-                            <li className='monthsbox' id={y} onClick={() => handleClick(index+1)}>{y}</li>
+                            <li key={y}
+                            onClick={() => handleClick(index+1)}
+                            className={`monthsbox ${active === index+1 ? 'active' : null}`}>
+                            {y}                        
+                            </li>
                         ))
                     }
                 </ul>
-            </div>
-            <div className='monthVeggies'>
-                {/* Second Part : Veggies Grid*/}
-                <ul id="VegiesGrid">
-                    {
-                        props.monthVeggies.map((veggie) => (
-                            <li id='veggiesbox'>
-                            <img className='veggieImage'
-                                src= {veggie.veggie_url}
-                                alt= {veggie.veggie_name}
-                                />
-                            <h2 id='veggieText'>
-                                {veggie.veggie_name}    
-                            </h2>
-                            </li>
-                        )) 
-                    }
+                
+           
+        </div>
+            <nav>
+                <div className={!isFruits ? 'active' : null} onClick={()=>handleChangeView(false)}>VEGGIES</div>
+                <div className={isFruits ? 'active' : null} onClick={()=> handleChangeView(true)}>FRUITS</div>
+            </nav>
 
-                </ul>
-            </div>
+      {(isFruits)
+      ? <FruitsGrid monthFruits = {props.monthFruits}/>
+      : <VeggiesGrid monthVeggies = {props.monthVeggies}/>
+}
         </div>
     );
 }
