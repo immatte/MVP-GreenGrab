@@ -34,5 +34,7 @@ h2.container {
 .background{
   border-radius: 20px;
   background-image: url('https://www.pixelstalk.net/wp-content/uploads/images3/Funny-Panda-Backgrounds.jpeg');
-  background-position: 50% 0;
+  background-position: 50% 0%;
+  /* background-repeat: no-repeat; */
+  /* background-position: center; */
 }

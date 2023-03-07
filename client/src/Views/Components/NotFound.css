@@ -5,7 +5,7 @@
     color: rgb(51, 51, 51);
     box-sizing: border-box;
   } 
-  h2.container {
+  h2.background {
       display: flex; /* or inline-flex */
       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
       font-size: 250%;
@@ -31,8 +31,9 @@
     
   }
   
-  .background{
-    border-radius: 20px;
-    background-image: url('https://www.pixelstalk.net/wp-content/uploads/images3/Funny-Panda-Backgrounds.jpeg');
-    background-position: 50% 0;
+  #background{
+    /* border-radius: 20px; */
+    background-image: url('https://i.pinimg.com/originals/b8/44/51/b844518e4262f54396470be38f183aae.gif');
+    /* background-position: 50% 0; */
+    height: 800px;
   }

@@ -1,9 +1,8 @@
 import React, {useState} from "react";
-import UserView from "./UserView";
+import UserView from "./Views/UserView";
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
-import VeggiesGrid from "./VeggiesGrid";
-import NotFound from "./NotFound";
+import NotFound from './Views/Components/NotFound';
 /* PARENT FROM USERVIEW 
 Check calendarGrid comments for lines 11-28
 */
@@ -12,13 +11,16 @@ function App() {
 
   const [ request, setRequest ] = useState([]);
   const [ request2, setRequest2 ] = useState([]);
+  const [ selectedCountry, setSelectedCountry ] = useState(0);
+
+  console.log(selectedCountry);
 
   // requestMonth uses a specific route created for creating a new table
   const requestMonth = async (month) => {
     //NewRequest --> date(Month)
     //Get the veggies linked to Month
     try {
-      let response = await fetch(`/veggies/${country}/${month}`);
+      let response = await fetch(`/veggies/${selectedCountry}/${month}`);
       if (response.ok) {
         let data = await response.json();
         setRequest(data);
@@ -34,9 +36,9 @@ function App() {
 
   const requestMonth2 = async (month) => {
     //NewRequest --> date(Month)
-    //Get the veggies linked to Month
+    //Get the veggies linked to Month and Country
     try {
-      let response = await fetch(`/fruits/${month}`);
+      let response = await fetch(`/fruits/${selectedCountry}/${month}`);
       if (response.ok) {
         let data = await response.json();
         setRequest2(data);
@@ -61,37 +63,32 @@ function App() {
         </h2>
         <div>
           <Routes>
-            <Route path="/" element={
-               <UserView requestMonthCb={text => requestMonth(text)}
-               requestMonth2Cb={text => requestMonth2(text)}
-               monthVeggies = {request}
-               monthFruits={request2}/>}>    
-
-               {/* <Route path="*" element={
-              <NotFound />
-            }>
-            </Route>        */}
-
+            <Route path="/" element={ <UserView requestMonthCb={text => requestMonth(text)}
+                  setSelectedCountry ={setSelectedCountry}  selectedCountry={selectedCountry}
+                  requestMonth2Cb={text => requestMonth2(text)}
+                  monthVeggies = {request}
+                  monthFruits={request2}/>}> 
             </Route>
             
         
 
-            <Route path=":month" element={
+            {/* <Route path=":month" element={
                   <UserView requestMonthCb={text => requestMonth(text)}
+                  setSelectedCountry ={setSelectedCountry}  selectedCountry={selectedCountry}
                   requestMonth2Cb={text => requestMonth2(text)}
                   monthVeggies = {request}
                   monthFruits={request2}/>}>
-            </Route>
+            </Route> */}
 
-            <Route path=":month/veggies" element={
+            {/* <Route path=":month/veggies" element={
                       <VeggiesGrid monthVeggies = {request}/>
                     }>
-            </Route>
+            </Route> */}
 
-            {/* <Route path="*" element={
+            <Route path="*" element={
               <NotFound />
             }>
-            </Route>  */}
+            </Route> 
           </Routes>
           
         </div>

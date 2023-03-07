@@ -40,6 +40,20 @@ router.get("/:country/:month", function(req, res, next) {
     
 });
 
+// GET all veggies from country
+router.get("/countryveggies/:country", function(req, res, next) {
+  let month = req.params.month;
+  let country = req.params.country;
+  db(`SELECT month_veggies.*, veggies.* FROM month_veggies 
+  LEFT JOIN veggies ON month_veggies.veggies_fk = veggies.id
+  AND month_veggies.country_fk = ${country}`)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+    
+});
+
 // GET veggies by id
 router.get("/veggie/:id", function(req, res, next) {
   let VeggiesId = req.params.id;

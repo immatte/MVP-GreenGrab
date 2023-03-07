@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './CalendarGrid.css';
 import { useState } from 'react';
 import { Routes, Route, Link } from "react-router-dom";
@@ -13,8 +13,17 @@ See lines 13-28 from App.
 */
 
 function CalendarGrid(props) {
-    const [ active, setActive ] = useState(false); //added for FE
+    // When clicking on a month, we make it active. We start at -1 because 0 has already the first month
+    const [ active, setActive ] = useState(-1); //added for FE
     const [ isFruits, setIsFruits ] = useState(false); //display veggies by default
+
+    // We select a country, and after clicking on a month button it's displaying its grids.
+    // But then, we want to select another country, so we change THE SELECTED COUNTRY in the select bar.
+    // Now, we are still seeing the grids of the previos selected country but... we don't want that.
+    // we need to return the state to -1, where no month is active (and so any grid is displaying). 
+    useEffect (() => {
+        setActive(-1)
+    }, [props.selectedCountry]);
 
     const handleClick = month => {
         // props.requestMonthCb(month);
@@ -27,17 +36,8 @@ function CalendarGrid(props) {
     const handleChangeView = (isFruits) => {
         setIsFruits(isFruits);
     }
-    //Work in progress : This function is currently not being used but could be for a future feature as to specify which Month was clicked on
-    // const handleChange = event => {
-    //   };
 
-    //added for FE:
-    // const activeMonth = () => {
-    //     setActive(!isActive);
-    // }
-
-
-    //array of the Month used in line 28
+    //array of the Month used in handleClick function
     let yearcalendar = ['January','February','March','April','May','June','July','August','September','October','November','December']
 
     return (
@@ -58,18 +58,22 @@ function CalendarGrid(props) {
                         ))
                     }
                 </ul>
-                
-           
         </div>
-            <nav>
+        
+        {(active>-1) && (
+            <div>
+           <nav>
                 <div className={!isFruits ? 'active' : null} onClick={()=>handleChangeView(false)}>VEGGIES</div>
                 <div className={isFruits ? 'active' : null} onClick={()=> handleChangeView(true)}>FRUITS</div>
             </nav>
+      {(isFruits )
+    ? <FruitsGrid monthFruits = {props.monthFruits}/>
+    : <VeggiesGrid monthVeggies = {props.monthVeggies}/>
+      }
+           </div>
+            )}
 
-      {(isFruits)
-      ? <FruitsGrid monthFruits = {props.monthFruits}/>
-      : <VeggiesGrid monthVeggies = {props.monthVeggies}/>
-}
+      
         </div>
     );
 }

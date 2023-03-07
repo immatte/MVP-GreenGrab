@@ -12,6 +12,20 @@ router.get("/", function(req, res, next) {
 });
 
 
+// GET Month fruits list by country
+router.get("/:country/:month", function(req, res, next) {
+  let month = req.params.month;
+  let country = req.params.country;
+  db(`SELECT month_fruits.*, fruits.* FROM month_fruits 
+  LEFT JOIN fruits ON month_fruits.fruits_fk = fruits.id
+  Where month_fruits.month_fk = ${month}
+  AND month_fruits.country_fk = ${country}`)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+    
+});
 // GET Month fruits list
 router.get("/:month", function(req, res, next) {
   let month = req.params.month;
