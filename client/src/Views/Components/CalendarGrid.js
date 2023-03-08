@@ -6,15 +6,15 @@ import VeggiesGrid from './VeggiesGrid';
 import FruitsGrid from './FruitsGrid';
 
 /* CHILD OF USERVIEW 
---> Lines 31-35 are creating a grid of Months(y) from the array of "yearcalendar" 
+--> Lines 31-35 (lines changes I guess) are creating a grid of Months(y) from the array of "yearcalendar" 
 --> the function handleclick() is recovering the index of the Month clicked on, and 
 comparing it to the ID of the Month selected from table "calendar"(requestMonthCb). 
-See lines 13-28 from App. 
+See lines 13-28 (lines changes I guess) from App. 
 */
 
 function CalendarGrid(props) {
     // When clicking on a month, we make it active. We start at -1 because 0 has already the first month
-    const [ active, setActive ] = useState(-1); //added for FE
+    const [ active, setActive ] = useState(-1); //to make one month active
     const [ isFruits, setIsFruits ] = useState(false); //display veggies by default
 
     // We select a country, and after clicking on a month button it's displaying its grids.
@@ -26,7 +26,6 @@ function CalendarGrid(props) {
     }, [props.selectedCountry]);
 
     const handleClick = month => {
-        // props.requestMonthCb(month);
         props.requestMonth2Cb(month);
         props.requestMonthCb(month);
         setActive(month);
@@ -41,40 +40,43 @@ function CalendarGrid(props) {
     let yearcalendar = ['January','February','March','April','May','June','July','August','September','October','November','December']
 
     return (
-        <div>
-            <div className='CalendarGrid'>
-                <h2>
-                    Click to find your Month veggies !
-                </h2>
-                <ul id='months'>
+    <div className="row d-flex justify-content-center" id="All">
+        <div className='background'>
+            <h2> Click to find your Month veggies ! </h2>
+               
+                <div id='months'>
                     {/* First Part : Calendar Grid buttons*/}
                     {
                         yearcalendar.map((y, index) => (
-                            <li key={y}
+                             <div key={y}
                             onClick={() => handleClick(index+1)}
                             className={`monthsbox ${active === index+1 ? 'active' : null}`}>
                             {y}                        
-                            </li>
+                            </div>
                         ))
                     }
-                </ul>
+                </div>
+
         </div>
-        
+
+
+        {/* IF A MONTH BUTTON IS CLICKED-ON, THEN DISPLAY THE NAVBAR OF VEGGIES OR FRUITS. AND DISPLAY VEGGIES GRID BY DEFAULT */}
         {(active>-1) && (
-            <div>
-           <nav>
-                <div className={!isFruits ? 'active' : null} onClick={()=>handleChangeView(false)}>VEGGIES</div>
-                <div className={isFruits ? 'active' : null} onClick={()=> handleChangeView(true)}>FRUITS</div>
+        <div>
+           <nav className="ForV">
+                <div className= {`navItem ${!isFruits ? 'active' : null}`} 
+                     onClick={()=>handleChangeView(false)}>Veggies</div>
+                <div className= {`navItem ${isFruits ? 'active' : null}`}
+                     onClick={()=> handleChangeView(true)}>Fruits</div>
             </nav>
       {(isFruits )
-    ? <FruitsGrid monthFruits = {props.monthFruits}/>
-    : <VeggiesGrid monthVeggies = {props.monthVeggies}/>
+           ? <FruitsGrid monthFruits = {props.monthFruits}/>
+           : <VeggiesGrid monthVeggies = {props.monthVeggies}/>
       }
            </div>
             )}
-
       
-        </div>
+    </div>
     );
 }
 

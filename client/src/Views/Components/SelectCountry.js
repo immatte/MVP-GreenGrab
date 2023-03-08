@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './SelectCountry.css';
 
-/* CHILD FROM USERVIEW */
+/* CHILD FROM HEADER */
 
 function SelectCountry(props) {
 
@@ -26,7 +26,7 @@ async function getCountries() {
   }
   }
 
-//Search bar built before the dropdown SELECT
+//Search bar built before the dropdown SELECT (maybe useful to make the select bar searchable)
 // let [ input, setInput ] = useState("");
 // async function searchCountry(e){
 //             e.preventDefault()
@@ -51,18 +51,17 @@ const handleSelectChange = ( event ) => {
 }
 
     return (
-        <div className="SelectBackground">
-            <div className="card-sm">
-            <select className = "form-select form-select-" aria-label=".form-select-lg example"
-                
+    <div>
+            
+        <select className = "form-select form-select-lg" id="selected"
                 onChange = { handleSelectChange }
-                
-            >
-         <option selected>Choose your country... </option> 
+        >
+            <option selected id="editOptions"> Select a country </option> 
             { countries.map(country => (
-                <option value={country.id}>{country.country_name}</option>
-                )) }
-</select>
+                <option id="editOptions" value={country.id}>{country.country_name}</option>
+            )) }
+        </select>
+
 {/*FORM built for the searchbar done before:
 <form onSubmit={searchCountry}>
                 <input 
@@ -73,8 +72,7 @@ const handleSelectChange = ( event ) => {
             <button type='submit'>Submit</button>
             </form> */}
     </div>
-    </div>
-        );
+    );
 }
 
 export default SelectCountry;

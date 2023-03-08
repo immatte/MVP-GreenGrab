@@ -1,24 +1,24 @@
-
-.monthVeggies{
-    object-fit: cover;
-    padding-top: 150px;
+.monthVeggies {
+    /* object-fit: cover; */
+    margin-top: 50px;
+    margin-bottom: 50px;
     width: 100%;
     list-style-type: none;
-    font-size: 100%;
+    /* font-size: 100%; */
     text-transform: capitalize ;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;;
-    font-weight: normal
+    font-weight: normal;
 }
-
-#VegiesGrid{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    padding-left: 0;
-    padding-right: 80px;
-    gap: 40px;
-    width: 100%;
-    list-style-type:none;
     
+    #VeggiesGrid {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    padding: 0;
+    /* padding-right: 80px; */
+    /* gap: 5px; */
+    width: 100%;
+    list-style-type:none    
 }
 
 .veggieImage {
@@ -28,7 +28,7 @@
     background-color: rgb(255, 255, 255);
     object-fit: contain;
     text-align: center;
-    margin: auto;
+    /* margin: auto; */
     background-color: rgba(255, 255, 255, 0.847);
     border-radius: 5px;
     border: 2px solid rgba(68, 53, 5, 0.26);
@@ -36,14 +36,14 @@
 }
 
 #veggieText{
-    padding-bottom: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
-
 
 #veggiesbox{
 
     width: 100%;
     overflow: hidden;
-    box-sizing: initial;
-    
+    /* box-sizing: initial; */
+    margin-bottom: 30px;  
 }
