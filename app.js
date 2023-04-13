@@ -17,7 +17,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+
+app.get("/", function(req, res, next) {
+    res.send("Access the API at path /api");
+  });
+
+app.use('/api', indexRouter);
 app.use('/users', usersRouter);
 
 module.exports = app;
