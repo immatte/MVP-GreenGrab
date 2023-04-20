@@ -2,7 +2,7 @@
 
 ### Dependencies
 
-- Go to project directory (cd GROMEAL). Run `npm install` in project directory. This will install server-related dependencies such as `express`.
+- Go to project directory. Run `npm install` in project directory. This will install server-related dependencies such as `express`.
 - `cd client` and run `npm install`. This will install client dependencies (React).
 
 ### Database Prep
